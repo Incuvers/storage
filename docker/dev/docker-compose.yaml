@@ -28,11 +28,11 @@ services:
       - 1883:1883
       - 8085:8085
   
-# https://github.com/sapcc/mosquitto-exporter
   mqtt-exporter:
     image: sapcc/mosquitto-exporter
-    ports:
-      - 9234:9234
+    ## port exposure not needed for prod
+    # ports:
+    #   - 9234:9234
     environment:
       - BROKER_ENDPOINT=tcp://mosquitto:1883
       # - BIND_ADDRESS=
@@ -79,7 +79,7 @@ services:
         - POSTGRES_DB=keycloak
         - POSTGRES_USER=keycloak
         - POSTGRES_PASSWORD=password
-  
+
   keycloak:
       image: quay.io/keycloak/keycloak:15.0.2
       environment:
